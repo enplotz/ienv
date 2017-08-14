@@ -16,6 +16,7 @@ MISSING="$ORPHAN"
 # for OSX
 export CLICOLOR=1
 export LSCOLORS='exgxxxxxcxxxCxCxExEx'
+export LSCOLORS='GxFxCxDxBxegedabagaced'
 
 # for Linux
 export LS_COLORS="no=$NORMAL:fi=$FILE:di=$DIR:ln=$LINK:or=$ORPHAN:mi=$MISSING:ex=$EXEC:su=$SETUID:sg=$SETUID:tw=$WRITABLE:ow=$WRITABLE"
