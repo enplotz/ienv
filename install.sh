@@ -3,7 +3,7 @@
 BEGIN_STR="### IENV ###"
 END_STR="### VNEI ###"
 
-procced() {
+proceed() {
     echo -n "$1 (y/n) "
     read answer
     echo "$answer" | grep -iq "^y"
@@ -12,7 +12,7 @@ procced() {
 
 # check if already installed ...
 if grep -isq "$BEGIN_STR"  $HOME/.{inputrc,bashrc} && grep -isq "$BEGIN_STR"  $HOME/.{inputrc,bashrc} ; then
-    if ! procced "seems like already installed, procced?" ; then
+    if ! proceed "seems like already installed, proceed?" ; then
         echo "canceled"
         exit;
     fi
@@ -25,7 +25,7 @@ echo $END_STR >> $HOME/.bashrc
 
 # create bash_profile, if needed
 if [ ! -f $HOME/.bash_profile ]; then
-    if procced "create .bash_profile?" ; then
+    if proceed "create .bash_profile?" ; then
         echo "if [ -f ~/.bashrc ]; then . ~/.bashrc; fi" >> $HOME/.bash_profile
     fi
 fi
