@@ -64,7 +64,7 @@ set foldnestmax=4
 """ colors please
 syntax enable
 set cursorline
-set background=light
+set background=dark
 
 """ auto complete
 set completeopt=longest,menuone,preview

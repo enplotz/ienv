@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Only display up to four directory components in the prompt.
+PROMPT_DIRTRIM=4
+
 # solarized colors
 BASE03="\[$(tput setaf 8)\]"
 BASE02="\[$(tput setaf 0)\]"
@@ -39,7 +42,7 @@ function right_prompt() {
   if [[ "$SSH_TTY" ]]; then
     str="$(id -u -n)@$(hostname -s) $str"
   fi
-  
+
   tput sc
   printf "%*s" $COLUMNS "$str"
   tput rc
@@ -51,7 +54,7 @@ function ppwd() {
   local path="$PWD"
   local path_depth=$(grep -o "/" <<< "$path" | wc -l)
   local cols=$((($COLUMNS * 2 / 5) - 10))
-  
+
   for (( i=1; i<=$path_depth; i++))
   do
     if [[ ${#path} -gt $cols ]]; then
