@@ -47,7 +47,7 @@ echo "if-shell '[ -r ~/.ienv/tmux ]' \"source-file ~/.ienv/tmux\"" >> $HOME/.tmu
 echo $END_STR >> $HOME/.tmux.conf
 
 # install vimrc and pathogen
-if procced "setup vimrc and pathogen?" ; then
+if proceed "setup vimrc and pathogen?" ; then
     echo "\" IENV" >> $HOME/.vimrc
     echo "if filereadable(glob(\"~/.ienv/vimrc\"))" >> $HOME/.vimrc
     echo "    source ~/.ienv/vimrc" >> $HOME/.vimrc
