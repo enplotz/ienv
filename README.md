@@ -31,6 +31,19 @@ The goal is to have robust, customizable and portable set of defaults for linux 
 * tmux support
 * respect non-interactive sessions
 
+## Requirements
+
+```bash
+brew install autojump bash
+```
+
+then
+
+```bash
+chsh -s /usr/local/bin/bash
+sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
+```
+
 ## Installation
 ```bash
 git clone https://github.com/denyskoch/ienv ~/.ienv && ~/.ienv/install.sh
