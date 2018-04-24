@@ -38,11 +38,16 @@ if [ $OSTYPE = darwin* ]; then
   # Support Rusts cargo build tool (via rustup)
   if [ -d ~/.cargo/bin ]; then
     PATH="~/.cargo/bin:$PATH"
+    source $HOME/.cargo/env
   fi
   # miniconda installation
   if [ -d ~/miniconda2 ]; then
     PATH="~/miniconda2/bin:$PATH"
     PATH="~/miniconda2/pkgs:$PATH"
+  fi
+
+  if [ -d ~/bin ]; then
+    PATH=$PATH:~/bin
   fi
 fi
 
