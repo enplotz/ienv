@@ -8,11 +8,6 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 
-alias dl="cd ~/Downloads"
-alias p="cd ~/Projects"
-alias w="cd /Work/"
-alias gp="cd $GOPATH"
-
 alias ls='ls'
 alias ll='ls -ahl'
 

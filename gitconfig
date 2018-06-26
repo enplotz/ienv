@@ -2,6 +2,6 @@
 	default = simple
 [core]
 	excludesfile = ~/.ienv/gitignore_global
-	editor = /usr/bin/vim
+	editor = /usr/bin/env subl
 [color]
 	ui = auto
