@@ -66,6 +66,42 @@ syntax enable
 set cursorline
 set background=dark
 
+"try
+
+  """ From :h xterm-true-color and :h termguicolors
+  if &term =~# '^screen'
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  else
+    let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+    let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+  endif
+
+  set termguicolors
+
+
+  " https://github.com/lifepillar/vim-solarized8#options
+  "let g:solarized_termtrans=1
+  "colorscheme solarized8_high
+
+  " https://github.com/morhetz/gruvbox
+  " gruvbox config
+  let g:gruvbox_italic=1
+  let g:gruvbox_contrast_dark='hard'
+  let g:gruvbox_contrast_light='hard'
+  colorscheme gruvbox
+
+  hi StatusLine term=none cterm=none
+  hi MatchParen cterm=bold ctermbg=none ctermfg=red
+
+  " Makes the background transparent. Leave these out if you're not using a transparent
+  " terminal.
+  highlight Normal ctermbg=NONE guibg=NONE
+  highlight NonText ctermbg=NONE guibg=NONE
+"catch
+"  " do nothing
+"endtry
+
 """ auto complete
 set completeopt=longest,menuone,preview
 if has("autocmd") && exists("+omnifunc")
@@ -74,20 +110,6 @@ if has("autocmd") && exists("+omnifunc")
     \     setlocal omnifunc=syntaxcomplete#Complete |
     \ endif
 endif
-
-""" load plugins
-execute pathogen#infect()
-
-
-""" try to set colorscheme
-try
-  let g:solarized_termtrans=1
-  colorscheme solarized
-  hi StatusLine term=none cterm=none
-  hi MatchParen cterm=bold ctermbg=none ctermfg=red
-catch
-  " do nothing
-endtry
 
 "" The Silver Searcher
 if executable('ag')
@@ -100,11 +122,6 @@ if executable('ag')
   " " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
-
-""" Statusline
-set statusline=%<%F\ %m\ %{&ff}\/%{&fileencoding?&fileencoding:&encoding}
-set statusline+=%=
-set statusline+=0x\%02.2B\(\%03.3b)\ %3v\ %10(%l/%L%)
 
 """ remappings
 nnoremap <leader><space> :nohlsearch<CR>  " clear search highlight
@@ -134,3 +151,7 @@ autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 
 autocmd FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
+
+" vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 0

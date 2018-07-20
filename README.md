@@ -1,10 +1,7 @@
 # Improved shell ENVironment
-This is a set of opinioned dotfiles used by me in daily work and in production.
-The goal is to have robust, customizable and portable set of defaults for linux bash shell for daily work.
 
-<img width="1058" alt="base" src="https://user-images.githubusercontent.com/1089800/28995982-3b1b28ea-79f7-11e7-9b81-9937ac542c91.png">
+Forked from [denyskoch/ienv](https://github.com/denyskoch/ienv).
 
-**Tested** on macOS and linux hosts.
 
 **Table of Contents**
 
@@ -17,24 +14,14 @@ The goal is to have robust, customizable and portable set of defaults for linux 
 - [Did you know ...?](#did-you-know-)
 - [Known issues](#known-issues)
 
-## Features
-* easy to customize / extend
-* space aware smart/adaptive prompt
-* highlighted error exit codes
-* optimized for solarized colors
-* handy aliases (system, git, etc)
-* time of last activity
-* fast git integration (current branch, branch state, defaults)
-* root and remote host indicator
-* sane vim defaults (pathogen, ctrlp, list-chars, solarized theme, ag-integration, tweaks, ...)
-* readline tweaks
-* tmux support
-* respect non-interactive sessions
 
 ## Requirements
 
+We need an up-to-date bash and vim (compiled with termguicolors option)
+
 ```bash
 brew install autojump bash
+brew install vim --with-override-system-vi
 ```
 
 then
@@ -44,12 +31,18 @@ chsh -s /usr/local/bin/bash
 sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 ```
 
+Make your new bash the default root shell: `sudo dscl . -change /Users/root UserShell /bin/sh /usr/local/bin/bash`. You can change to a root account with `sudo -s` and preserve your `$PS1`.
+
 ## Installation
 ```bash
-git clone https://github.com/denyskoch/ienv ~/.ienv && ~/.ienv/install.sh
+git clone --recursive https://github.com/enplotz/ienv ~/.ienv && ~/.ienv/install.sh
 ```
 
-You should also install Solarized color theme for your terminal. ([ethanschoonover.com/solarized](http://ethanschoonover.com/solarized))
+You should also install "Gruvbox Dark" ([morhetz/gruvbox-contrib](https://github.com/morhetz/gruvbox-contrib/tree/master/iterm2)).
+
+Alternatively, you can use "Solarized Dark Patched" color theme for your terminal ([mbadolato/iTerm2-Color-Schemes](https://github.com/mbadolato/iTerm2-Color-Schemes/#solarized-dark---patched)).
+
+
 
 For faster and better fuzzy search results install **ag** the silver searcher:
 
@@ -58,7 +51,7 @@ brew install ag
 ```
 
 ## Customizing / Extending
-You can edit and customize your .baschrc, .vimrc, .tmux.conf as usual. IENV is integrated gracefully (no symlinks, no file copies), so things should not break. Take a look at your .bashrc for example:
+You can edit and customize your .baschrc, .vimrc, .tmux.conf as usual. IENV is integrated gracefully (no symlinks (ok, only for vim plugins/themes), no file copies), so things should not break. Take a look at your .bashrc for example:
 
 ```bash
 ...
@@ -70,28 +63,24 @@ You can edit and customize your .baschrc, .vimrc, .tmux.conf as usual. IENV is i
 
 Since its just an include, you can simple add or override settings you like.
 
-### Dark color theme
-Simply switch terminal color theme e.g. solarized dark:
-<img width="906" alt="dark" src="https://user-images.githubusercontent.com/1089800/28995979-3b17bad4-79f7-11e7-9f05-021c9d37e12e.png">
-
 ## Shell
 * automatically cd to directory:
- 
+
     ```bash
     /work $ kitchen
     cd -- kitchen
-    /work/kitchen $ 
+    /work/kitchen $
     ```
 * auto correct wrong spelled directories
 
     ```bash
     /work/demo $ ls
-    abc bar foo          
-                                                                                   
-    /work/demo $ cd bra                                                                      
-    /work/demo/bar $ 
+    abc bar foo
+
+    /work/demo $ cd bra
+    /work/demo/bar $
     ```
-    
+
 * search in bash history with arrow keys e.g.:
 
     ```bash
@@ -117,7 +106,7 @@ Simply switch terminal color theme e.g. solarized dark:
     Public: 95.208.248.59
     Local: 192.168.0.164
     Gateway: 192.168.0.1
-    ``` 
+    ```
 
 
 
@@ -138,9 +127,9 @@ Simply switch terminal color theme e.g. solarized dark:
 
 
 ### Remote Shell
-* for remote hosts/shels the hostname is printed on the right
+* for remote hosts/shells the hostname is printed on the right
 * root shells looks dangerous for more attention and prevent upss
-<img width="1058" alt="remote" src="https://user-images.githubusercontent.com/1089800/28995983-3b1bd61e-79f7-11e7-9002-7f145095fde6.png">
+
 
 ## GIT
 * push strategy is set to simple
@@ -175,22 +164,21 @@ Simply switch terminal color theme e.g. solarized dark:
 * **ctrl + n** for auto complete
 
 #### some normal mode commands / shortcuts
-* **ctrl + j**, **ctrl + k**, **ctrl + h**, **ctrl + l** for split movement  
+* **ctrl + j**, **ctrl + k**, **ctrl + h**, **ctrl + l** for split movement
 * **z** to toggle fold under cursor
 * **gd** go to definition
 * **J** (shift + j) switch to next buffer
 * **K** (shift + k) switch to previous buffer
-<img width="1082" alt="vim3" src="https://user-images.githubusercontent.com/1089800/28995985-3b34403c-79f7-11e7-904c-fa85a8f141ac.png">
-<img width="1082" alt="vim2" src="https://user-images.githubusercontent.com/1089800/28995984-3b2dda80-79f7-11e7-9f82-3e5d03a8628b.png">
 
-* dark color theme (e.g. solarized-dark)
+
+* dark color theme (e.g. solarized8)
 
     insert to your in your ~/.vimrc file:
-    
+
     ``` vimrc
     set background=dark
     ```
-    <img width="962" alt="vim_dark" src="https://user-images.githubusercontent.com/1089800/28995980-3b19df58-79f7-11e7-8ce9-9e41705eabff.png">
+
 
 ## Did you know ...?
 * you can simply toggle between last used directories:
@@ -198,11 +186,11 @@ Simply switch terminal color theme e.g. solarized dark:
     ``` bash
     /work/demo/foo $ cd /work/
     /work $ cd -
-    /work/demo/foo $ 
+    /work/demo/foo $
     /work/demo/foo $ cd -
-    /work $ 
+    /work $
     ```
-    
+
 * **cd** without arguments return you back to $HOME
 * `killall <name>` kill process by name (alternative to `kill <pid>`)
 

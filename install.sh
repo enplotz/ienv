@@ -48,8 +48,9 @@ echo $BEGIN_STR >> $HOME/.tmux.conf
 echo "if-shell '[ -f ~/.ienv/tmuxconf ]' \"source-file ~/.ienv/tmuxconf\"" >> $HOME/.tmux.conf
 echo $END_STR >> $HOME/.tmux.conf
 
-# install vimrc and pathogen
-if proceed "setup vimrc and pathogen?" ; then
+# install vimrc (since vim 8 no pathogen needed)
+if proceed "❓setup vimrc?" ; then
+
     echo "\" IENV" >> $HOME/.vimrc
     echo "if filereadable(glob(\"~/.ienv/vimrc\"))" >> $HOME/.vimrc
     echo "    source ~/.ienv/vimrc" >> $HOME/.vimrc
@@ -57,15 +58,17 @@ if proceed "setup vimrc and pathogen?" ; then
     echo "\" VNEI" >> $HOME/.vimrc
     mkdir -p $HOME/.vim/swapfiles/
 
-    echo "installing pathogen.vim and basic plugins ..."
-    mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle && \
-    curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+    echo "[VIM] installing plugins ..."
+    mkdir -p $HOME/.vim/pack/managed-by-ienv/start $HOME/.vim/pack/managed-by-ienv/opt
 
-    pushd
-    cd ~/.vim/bundle
-    git clone https://github.com/altercation/vim-colors-solarized.git
-    git clone https://github.com/ctrlpvim/ctrlp.vim.git
-    popd
+    # load solarized8 theme automatically
+    #ln -s ~/.ienv/vim/theme/solarized8 ~/.vim/pack/managed-by-ienv/start
+    # load gruvbox theme automatically
+    ln -s ~/.ienv/vim/theme/gruvbox ~/.vim/pack/managed-by-ienv/start
+
+    ln -s ~/.ienv/vim/plugin/airline ~/.vim/pack/managed-by-ienv/start
+
+    # Do I need github.com/ctrlpvim/ctrlp.vim ?
 fi
 
 echo "DONE: You should now restart your session/terminal"

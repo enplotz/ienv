@@ -20,8 +20,21 @@ VIOLET="\[$(tput setaf 13)\]"
 BLUE="\[$(tput setaf 4)\]"
 CYAN="\[$(tput setaf 6)\]"
 GREEN="\[$(tput setaf 2)\]"
-
 RESET="\[$(tput sgr0)\]"
+
+
+### Overwrite TrueColor Gruvbox Colors
+
+# 38 sets foreground, 48 sets background
+# The last three numbers in each \x1b[...m expression represent the desired red, green and blue values (from 0 to 255).
+# https://github.com/morhetz/gruvbox-contrib/blob/master/color.table
+GREEN="\[$(printf "\x1b[38;2;134;135;21m\]")\]" # 134-135- 21
+BASE1="\[$(printf "\x1b[38;2;125;182;105m\]")\]" # 125-182-105
+BASE0="\[$(printf "\x1b[38;2;113;149;134m\]")\]" # 113-149-134
+RED="\[$(printf "\x1b[38;2;190;15;23m\]")\]" # 190- 15- 23
+ORANGE="\[$(printf "\x1b[38;2;247;48;40m\]")\]" #  247- 48- 40
+BASE01="\[$(printf "\x1b[38;2;170;176;30m\]")\]" # 170-176- 30
+
 
 function git_prompt() {
   branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
@@ -37,7 +50,7 @@ function status_symbol() {
 }
 
 function right_prompt() {
-  local str="$(date +'%a %H:%M:%S')"
+  local str="$(date +'%H:%M:%S')"
 
   if [[ "$SSH_TTY" ]]; then
     str="$(id -u -n)@$(hostname -s) $str"
