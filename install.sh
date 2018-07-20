@@ -12,11 +12,13 @@ proceed() {
 
 # check if already installed ...
 if grep -isq "$BEGIN_STR"  $HOME/.{inputrc,bashrc} && grep -isq "$BEGIN_STR"  $HOME/.{inputrc,bashrc} ; then
-    if ! proceed "seems like already installed, proceed?" ; then
+    if ! proceed "❓seems like already installed, proceed?" ; then
         echo "canceled"
         exit;
     fi
 fi
+
+echo "🖥 installing ...\n"
 
 # install bashrc
 echo $BEGIN_STR >> $HOME/.bashrc
@@ -25,7 +27,7 @@ echo $END_STR >> $HOME/.bashrc
 
 # create bash_profile, if needed
 if [ ! -f $HOME/.bash_profile ]; then
-    if proceed "create .bash_profile?" ; then
+    if proceed "❓create .bash_profile?" ; then
         echo "if [ -f ~/.bashrc ]; then . ~/.bashrc; fi" >> $HOME/.bash_profile
     fi
 fi
@@ -43,7 +45,7 @@ echo $END_STR >> $HOME/.gitconfig
 
 # install tmux.conf
 echo $BEGIN_STR >> $HOME/.tmux.conf
-echo "if-shell '[ -r ~/.ienv/tmux ]' \"source-file ~/.ienv/tmux\"" >> $HOME/.tmux.conf
+echo "if-shell '[ -f ~/.ienv/tmuxconf ]' \"source-file ~/.ienv/tmuxconf\"" >> $HOME/.tmux.conf
 echo $END_STR >> $HOME/.tmux.conf
 
 # install vimrc and pathogen
