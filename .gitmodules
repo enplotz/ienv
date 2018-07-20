@@ -1,0 +1,6 @@
+[submodule "tmux"]
+	path = tmux
+	url = git://github.com/gpakosz/.tmux.git
+[submodule "vim/theme/solarized8"]
+	path = vim/theme/solarized8
+	url = https://github.com/lifepillar/vim-solarized8.git
