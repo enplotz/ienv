@@ -24,16 +24,35 @@ RESET="\[$(tput sgr0)\]"
 
 
 ### Overwrite TrueColor Gruvbox Colors
-
 # 38 sets foreground, 48 sets background
-# The last three numbers in each \x1b[...m expression represent the desired red, green and blue values (from 0 to 255).
+# More explanation: https://stackoverflow.com/a/26665998
+# Since I use iTerm, I used the iterm2 specific RGB codes from this table:
 # https://github.com/morhetz/gruvbox-contrib/blob/master/color.table
-GREEN="\[$(printf "\x1b[38;2;134;135;21m\]")\]" # 134-135- 21
-BASE1="\[$(printf "\x1b[38;2;125;182;105m\]")\]" # 125-182-105
-BASE0="\[$(printf "\x1b[38;2;113;149;134m\]")\]" # 113-149-134
-RED="\[$(printf "\x1b[38;2;190;15;23m\]")\]" # 190- 15- 23
-ORANGE="\[$(printf "\x1b[38;2;247;48;40m\]")\]" #  247- 48- 40
-BASE01="\[$(printf "\x1b[38;2;170;176;30m\]")\]" # 170-176- 30
+# general pattern:
+#  \[    =escape non-printing characters so readline can keep track of number of characters
+#  \e[   =escape sequence for color
+#  38;   =route foreground
+#  2;    =flag for 24bit color with 3 following components
+#  R;G;B =RGB value for color
+#  m     =end color escape sequence
+# \]     =end outer escape sequence
+BASE03="\[\e[38;2;146;131;116m\]" # 146-131-116
+BASE02="\[\e[38;2;40;40;40m\]" # 40- 40- 40
+BASE01="\[\e[38;2;170;176;30m\]" # 170-176- 30
+BASE00="\[$(tput setaf 11)\]" # 250-189- 47
+BASE0="\[\e[38;2;113;149;134m\]" # 113-149-134
+BASE1="\[$(tput setaf 14)\]" # 142-192-124
+BASE2="\[$(tput setaf 7)\]" #  168-153-132
+BASE3="\[$(tput setaf 15)\]" # 235-219-178
+YELLOW="\[$(tput setaf 3)\]" #  215-153- 33
+ORANGE="\[\e[38;2;247;48;40m\]" #  247- 48- 40
+RED="\[\e[38;2;190;15;23m\]" # 190- 15- 23
+MAGENTA="\[$(tput setaf 5)\]" #  177- 98-134
+VIOLET="\[$(tput setaf 13)\]" # 211-134-155
+BLUE="\[$(tput setaf 4)\]" # 69-133-136
+CYAN="\[$(tput setaf 6)\]" #  104-157-106
+GREEN="\[\e[38;2;134;135;21m\]" # 134-135- 21
+RESET="\[\e[0m\]" # just a 0 value resets
 
 
 function git_prompt() {
@@ -90,7 +109,7 @@ function root_check() {
 
 PS1="$BASE0\$(LS=\$?; right_prompt; exit \$LS)"
 PS1+="$RED\$(status_symbol \$?)$RESET\n"
-PS1+="$BASE1\$(ppwd)$GREEN\$(git_prompt)"
+PS1+="\u@\h:$BASE1\$(ppwd)$GREEN\$(git_prompt)"
 PS1+="$ORANGE\$(root_check)"
 PS1+="$BASE01\\$ $RESET"
 
