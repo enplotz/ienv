@@ -1,23 +1,43 @@
 # Improved shell ENVironment 
 
-Forked from [denyskoch/ienv](https://github.com/denyskoch/ienv).
+You could call this dotfiles repository "opinionated", but most of the things are just how they were when I forked the repo and some things are to my liking.
+Something's probably broken, too.
+Pull requests are highly appreciated.
+
+- Forked from [denyskoch/ienv](https://github.com/denyskoch/ienv).
+- Currently tested **only on macOS 10.13**! I hope to use it on Ubuntu very soon.
+
+![Screenshot of prompt](https://raw.githubusercontent.com/enplotz/ienv/master/images/prompt.png)
 
 
 **Table of Contents**
 
 - [Features](#features)
+- [Requirements](#requirements)
 - [Installation](#installation)
 - [Customizing / Extending](#customizing--extending)
 - [Shell](#shell)
-- [GIT](#git)
+- [Git](#git)
 - [Vim](#vim)
 - [Did you know ...?](#did-you-know-)
 - [Known issues](#known-issues)
 
 
+## Features
+
+- gruvbox theme (with true color support!)
+- vim 8 config
+- some okayish tmux config
+- root indicator
+- command timestamp and error code
+
+![Screenshot of vim/tmux](https://raw.githubusercontent.com/enplotz/ienv/master/images/vimtmux.png)
+
 ## Requirements
 
-We need an up-to-date bash and vim (compiled with termguicolors option)
+### 🖥 macOS (10.13)
+
+We need an up-to-date bash and vim (compiled with `termguicolors` option by default)
 
 ```bash
 brew install autojump bash
@@ -33,9 +53,11 @@ sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 
 Make your new bash the default root shell: `sudo dscl . -change /Users/root UserShell /bin/sh /usr/local/bin/bash`. You can change to a root account with `sudo -s` and preserve your `$PS1`.
 
-### Font 
+### Font
 
-We also need a NerdFont 🤓 (a font patched with icons). For example, I like FiraCode, so I'm using the patched version of it:
+We also need a NerdFont 🤓 (a font patched with icons). For example, I like FiraCode, so I'm using the patched version of it.
+It also works with `airline` (aligned symbols).
+If you installed the font correctly, you should see a little icon in the title of this readme (and not some garbage).
 
 ```bash
 curl -O https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/FiraCode.zip
@@ -49,11 +71,12 @@ Unzip and install the version for your OS.
 git clone --recursive https://github.com/enplotz/ienv ~/.ienv && ~/.ienv/install.sh
 ```
 
+### iTerm2 (macOS)
 You should also install "Gruvbox Dark" ([morhetz/gruvbox-contrib](https://github.com/morhetz/gruvbox-contrib/tree/master/iterm2)).
 
-Alternatively, you can use "Solarized Dark Patched" color theme for your terminal ([mbadolato/iTerm2-Color-Schemes](https://github.com/mbadolato/iTerm2-Color-Schemes/#solarized-dark---patched)).
+Alternatively, you can also try "Solarized Dark Patched" color theme for your terminal ([mbadolato/iTerm2-Color-Schemes](https://github.com/mbadolato/iTerm2-Color-Schemes/#solarized-dark---patched)).
 
-
+### Optional
 
 For faster and better fuzzy search results install **ag** the silver searcher:
 
@@ -73,6 +96,7 @@ You can edit and customize your .baschrc, .vimrc, .tmux.conf as usual. IENV is i
 ```
 
 Since its just an include, you can simple add or override settings you like.
+
 
 ## Shell
 * automatically cd to directory:
@@ -98,6 +122,7 @@ Since its just an include, you can simple add or override settings you like.
     /work/demo/bar $ ssh<arrow up>
     ```
 
+
 ### Aliases
 #### common
 * **pw**: generate strong password with help of openSSL
@@ -106,9 +131,6 @@ Since its just an include, you can simple add or override settings you like.
 * **..**: go one directory up
 * **...**: go two directories up
 * **....**: go three directories up
-* **dl**: go to downloads folder i.e. cd ~/Downloads
-* ***p**: go to project directory i.e. cd ~/Projects
-* **gp**: go to GO workspace i.e. cd $GOPATH
 * **ll**: long list i.e. ls -ahl
 * **ips**: show current IPs
 
@@ -118,7 +140,6 @@ Since its just an include, you can simple add or override settings you like.
     Local: 192.168.0.164
     Gateway: 192.168.0.1
     ```
-
 
 
 #### git and related
@@ -142,26 +163,11 @@ Since its just an include, you can simple add or override settings you like.
 * root shells looks dangerous for more attention and prevent upss
 
 
-## GIT
+## Git
 * push strategy is set to simple
 * default editor is vim
 * colors set to auto
-* gobal gitignore for annoying OS generated files:
-
-    ```
-    .DS_Store
-    .DS_Store?
-    ._*
-    .Spotlight-V100
-    .Trashes
-    __MACOSX
-    ehthumbs.db
-    Thumbs.db
-    Desktop.ini
-    *~
-    *.swp
-    *.swo
-    ```
+* gobal gitignore for annoying OS generated files (like `.DS_Store`)
 
 ## Vim
 * persistend undos: you can even undo after vim is closed and opened again
@@ -182,15 +188,6 @@ Since its just an include, you can simple add or override settings you like.
 * **K** (shift + k) switch to previous buffer
 
 
-* dark color theme (e.g. solarized8)
-
-    insert to your in your ~/.vimrc file:
-
-    ``` vimrc
-    set background=dark
-    ```
-
-
 ## Did you know ...?
 * you can simply toggle between last used directories:
 
@@ -207,6 +204,7 @@ Since its just an include, you can simple add or override settings you like.
 
 
 ## Known issues
+
 Feel free to open a new issue on GitHub.
 
 ### macOS bash
@@ -215,10 +213,14 @@ bash: shopt: autocd: invalid shell option name
 bash: shopt: dirspell: invalid shell option name
 bash: update_terminal_cwd: command not found
 ```
-Since macOS is using a old version of bash, this errors will occur.
+Since macOS is using a old version of bash, these errors will occur.
 
 Bash v4+ is required, you can install it via brew `brew install bash` ([brew.sh](https://brew.sh))
 
 ### Vim issues in dark terminals
 If you use dark terminal theme, you need to add `set background=dark`
 to your .vimrc
+
+### Colorscheme looks fancy broken
+
+You are not using a terminal emulator that supports TrueColor.

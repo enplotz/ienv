@@ -67,6 +67,7 @@ if proceed "❓setup vimrc?" ; then
     ln -s ~/.ienv/vim/theme/gruvbox ~/.vim/pack/managed-by-ienv/start
 
     ln -s ~/.ienv/vim/plugin/airline ~/.vim/pack/managed-by-ienv/start
+    ln -s ~/.ienv/vim/plugin/fugitive ~/.vim/pack/managed-by-ienv/start
 
     # Do I need github.com/ctrlpvim/ctrlp.vim ?
 fi

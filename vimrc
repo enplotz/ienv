@@ -155,11 +155,19 @@ autocmd InsertLeave * :set relativenumber
 autocmd FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
 
 " vim-airline
+let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 0
+let g:airline_theme='gruvbox'
+let g:airline_powerline_fonts = 1
 
-    " set the CN (column number) symbol:
-"autocmd VimEnter * let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
+function! AirlineSectionsInit()
+  " set the CN (column number) symbol:
+  "let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
+  let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
+endfunction
+
+
+autocmd VimEnter * call AirlineSectionsInit()
 
 
 
