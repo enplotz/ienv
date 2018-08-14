@@ -1,4 +1,4 @@
-# Improved shell ENVironment
+# Improved shell ENVironment 
 
 Forked from [denyskoch/ienv](https://github.com/denyskoch/ienv).
 
@@ -32,6 +32,17 @@ sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 ```
 
 Make your new bash the default root shell: `sudo dscl . -change /Users/root UserShell /bin/sh /usr/local/bin/bash`. You can change to a root account with `sudo -s` and preserve your `$PS1`.
+
+### Font 
+
+We also need a NerdFont 🤓 (a font patched with icons). For example, I like FiraCode, so I'm using the patched version of it:
+
+```bash
+curl -O https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/FiraCode.zip
+```
+
+Unzip and install the version for your OS.
+
 
 ## Installation
 ```bash

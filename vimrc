@@ -61,6 +61,8 @@ set foldmethod=syntax
 set foldlevelstart=3
 set foldnestmax=4
 
+set guifont=Fura\ Code\ Retina\ Nerd\ Font\ Complete\ 14
+
 """ colors please
 syntax enable
 set cursorline
@@ -155,3 +157,9 @@ autocmd FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 0
+
+    " set the CN (column number) symbol:
+"autocmd VimEnter * let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
+
+
+
