@@ -61,8 +61,6 @@ if proceed "❓setup vimrc?" ; then
     echo "[VIM] installing plugins ..."
     mkdir -p $HOME/.vim/pack/managed-by-ienv/start $HOME/.vim/pack/managed-by-ienv/opt
 
-    # load solarized8 theme automatically
-    #ln -s ~/.ienv/vim/theme/solarized8 ~/.vim/pack/managed-by-ienv/start
     # load gruvbox theme automatically
     ln -s ~/.ienv/vim/theme/gruvbox ~/.vim/pack/managed-by-ienv/start
 
@@ -71,5 +69,9 @@ if proceed "❓setup vimrc?" ; then
 
     # Do I need github.com/ctrlpvim/ctrlp.vim ?
 fi
+
+echo "[term] setup custom terminfo"
+tic -x tmux-256color.terminfo
+tic -x xterm-256color-italic.terminfo
 
 echo "DONE: You should now restart your session/terminal"

@@ -25,9 +25,9 @@ Pull requests are highly appreciated.
 
 ## Features
 
-- gruvbox theme (with true color support!)
+- gruvbox theme (with true color and italics support!)
 - vim 8 config
-- some okayish tmux config
+- some okayish tmux config, I guess
 - root indicator
 - command timestamp and error code
 
@@ -62,9 +62,7 @@ If you installed the font correctly, you should see a little icon in the title o
 ```bash
 curl -O https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/FiraCode.zip
 ```
-
 Unzip and install the version for your OS.
-
 
 ## Installation
 ```bash
@@ -76,6 +74,8 @@ You should also install "Gruvbox Dark" ([morhetz/gruvbox-contrib](https://github
 
 Alternatively, you can also try "Solarized Dark Patched" color theme for your terminal ([mbadolato/iTerm2-Color-Schemes](https://github.com/mbadolato/iTerm2-Color-Schemes/#solarized-dark---patched)).
 
+Do not set the color contrast too high via iTerms slider, or else you will get fancy triangles in the status line (which took me forever to debug!).
+
 ### Optional
 
 For faster and better fuzzy search results install **ag** the silver searcher:
@@ -85,7 +85,7 @@ brew install ag
 ```
 
 ## Customizing / Extending
-You can edit and customize your .baschrc, .vimrc, .tmux.conf as usual. IENV is integrated gracefully (no symlinks (ok, only for vim plugins/themes), no file copies), so things should not break. Take a look at your .bashrc for example:
+You can edit and customize your .baschrc, .vimrc, .tmux.conf as usual. IENV is integrated gracefully (no symlinks (well, only for vim plugins/themes), no file copies), so things should not break. Take a look at your .bashrc for example:
 
 ```bash
 ...
@@ -95,7 +95,7 @@ You can edit and customize your .baschrc, .vimrc, .tmux.conf as usual. IENV is i
 ### VNEI ###
 ```
 
-Since its just an include, you can simple add or override settings you like.
+Since its just an include, you can simply add or override settings you like.
 
 
 ## Shell
@@ -207,6 +207,9 @@ Since its just an include, you can simple add or override settings you like.
 
 Feel free to open a new issue on GitHub.
 
+- sometimes the color scheme looks off either in vim or in vim inside a tmux
+- mouse-based copy/paste in vim and vim+tmux might not work (in general, this is difficult to get right since everyone that uses vim/tmux longer than me seems to have their own preferences)
+
 ### macOS bash
 ```
 bash: shopt: autocd: invalid shell option name
@@ -224,3 +227,17 @@ to your .vimrc
 ### Colorscheme looks fancy broken
 
 You are not using a terminal emulator that supports TrueColor.
+
+### Note on `pip install --user`
+
+As per [Homebrew](https://docs.brew.sh/Homebrew-and-Python), if you use Homebrew to install python3:
+
+    The normal `pip install --user` is disabled for brewed Python. This is because of a bug in `distutils`, because Homebrew writes a `distutils.cfg` which sets the package prefix.
+
+    A possible workaround (which puts executable scripts in `~/Library/Python/<X>.<Y>/bin`) is:
+
+    ```bash
+    python -m pip install --user --install-option="--prefix=" <package-name>
+    ```
+
+So, we also include the path(s) above in `$PATH` for Python 3 (so `<X>` = 3).

@@ -1,5 +1,8 @@
 set nocompatible
 filetype plugin on
+syntax enable
+set mouse=a
+set clipboard=unnamed
 
 """ speed tweaks
 set ttimeoutlen=30
@@ -64,45 +67,34 @@ set foldnestmax=4
 set guifont=Fura\ Code\ Retina\ Nerd\ Font\ Complete\ 14
 
 """ colors please
-syntax enable
-set cursorline
+
+""" From :h xterm-true-color and :h termguicolors
+if &term =~# '^screen'
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+else
+  let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+  let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+endif
+
+ set cursorline
+ set termguicolors
+
+""" https://github.com/morhetz/gruvbox
+let g:gruvbox_italic=1
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_light='hard'
+
+hi StatusLine term=none cterm=none
+hi MatchParen cterm=bold ctermbg=none ctermfg=red
+
+""" Makes the background transparent. Leave these out if you're not using a transparent
+""" terminal.
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+
 set background=dark
-
-"try
-
-  """ From :h xterm-true-color and :h termguicolors
-  if &term =~# '^screen'
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  else
-    let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
-    let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
-  endif
-
-  set termguicolors
-
-
-  " https://github.com/lifepillar/vim-solarized8#options
-  "let g:solarized_termtrans=1
-  "colorscheme solarized8_high
-
-  " https://github.com/morhetz/gruvbox
-  " gruvbox config
-  let g:gruvbox_italic=1
-  let g:gruvbox_contrast_dark='hard'
-  let g:gruvbox_contrast_light='hard'
-  colorscheme gruvbox
-
-  hi StatusLine term=none cterm=none
-  hi MatchParen cterm=bold ctermbg=none ctermfg=red
-
-  " Makes the background transparent. Leave these out if you're not using a transparent
-  " terminal.
-  highlight Normal ctermbg=NONE guibg=NONE
-  highlight NonText ctermbg=NONE guibg=NONE
-"catch
-"  " do nothing
-"endtry
+colorscheme gruvbox
 
 """ auto complete
 set completeopt=longest,menuone,preview
@@ -147,14 +139,23 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 """ automatics
-autocmd FocusLost * :set number
-autocmd FocusGained * :set relativenumber
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
+set rnu
+function ToggleNumbersOn()
+    set rnu!
+    set nu
+endfunction
+function ToggleRelativeOn()
+    set nu!
+    set rnu
+endfunction
+autocmd FocusLost * call ToggleNumbersOn()
+autocmd FocusGained * call ToggleRelativeOn()
+autocmd InsertEnter * call ToggleNumbersOn()
+autocmd InsertLeave * call ToggleRelativeOn()
 
 autocmd FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
 
-" vim-airline
+""" vim-airline
 let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='gruvbox'
@@ -165,7 +166,6 @@ function! AirlineSectionsInit()
   "let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
   let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
 endfunction
-
 
 autocmd VimEnter * call AirlineSectionsInit()
 

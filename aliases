@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# don't let ssh forward our italics TERM to machines that don't have
+# our custom TERM
+alias ssh='TERM=xterm-256color ssh'
+
 alias h='history'
 alias hs='history | grep -i '
 

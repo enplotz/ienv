@@ -3,7 +3,6 @@
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-
 # git
 # export GIT_EXEC_PATH=~/.bin/:$(git --exec-path)
 
@@ -30,24 +29,38 @@ _fzf_compgen_path() {
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
-if [ $OSTYPE = darwin* ]; then
-  if [ -d /usr/local/sbin ]; then
-    PATH=/usr/local/sbin:$PATH
-  fi
+if [[ "$OSTYPE" == "darwin"* ]]; then
+
+  # if [ -d /usr/local/sbin ]; then
+  #   PATH=/usr/local/sbin:$PATH
+  # fi
+
   # Support Rusts cargo build tool (via rustup)
   if [ -d ~/.cargo/bin ]; then
     PATH="~/.cargo/bin:$PATH"
     source $HOME/.cargo/env
   fi
-  # miniconda installation
-  if [ -d ~/miniconda2 ]; then
-    PATH="~/miniconda2/bin:$PATH"
-    PATH="~/miniconda2/pkgs:$PATH"
-  fi
+
+  # # miniconda2 installation
+  # if [ -d ~/miniconda2 ]; then
+  #   PATH="~/miniconda2/bin:$PATH"
+  #   PATH="~/miniconda2/pkgs:$PATH"
+  # fi
 
   if [ -d ~/.bin ]; then
     PATH=$PATH:~/.bin
   fi
+
+  # Fix Homebrew-Python commands
+  # https://docs.brew.sh/Homebrew-and-Python#note-on-pip-install---user
+  # ~/Library/Python/X.Y/bin
+  if brew ls --versions python > /dev/null; then
+    for i in ~/Library/Python/3.*
+    do
+      PATH=$PATH:"${i}/bin"
+    done
+  fi
+
 fi
 
 export PATH
