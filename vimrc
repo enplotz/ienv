@@ -54,9 +54,9 @@ set listchars+=extends:>
 set listchars+=precedes:<
 set showbreak=↪ " Visualize wrapped lines when wrap toggled
 
-augroup golang
-    autocmd BufRead *.go set nolist
-augroup END
+"augroup golang
+""    autocmd BufRead *.go set nolist
+"augroup END
 
 """ folding
 set foldenable
@@ -93,8 +93,9 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=red
 highlight Normal ctermbg=NONE guibg=NONE
 highlight NonText ctermbg=NONE guibg=NONE
 
-set background=dark
-colorscheme gruvbox
+"set background=dark
+"colorscheme gruvbox
+colorscheme onehalflight
 
 """ auto complete
 set completeopt=longest,menuone,preview
@@ -158,7 +159,8 @@ autocmd FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
 """ vim-airline
 let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='gruvbox'
+"let g:airline_theme='gruvbox'
+let g:airline_theme='onehalflight'
 let g:airline_powerline_fonts = 1
 
 function! AirlineSectionsInit()

@@ -1,0 +1,30 @@
+### TrueColor Gruvbox Colors
+# 38 sets foreground, 48 sets background
+# More explanation: https://stackoverflow.com/a/26665998
+# Since I use iTerm, I used the iterm2 specific RGB codes from this table:
+# https://github.com/morhetz/gruvbox-contrib/blob/master/color.table
+# general pattern:
+#  \[    =escape non-printing characters so readline can keep track of number of characters
+#  \e[   =escape sequence for color
+#  38;   =route foreground
+#  2;    =flag for 24bit color with 3 following components
+#  R;G;B =RGB value for color
+#  m     =end color escape sequence
+# \]     =end outer escape sequence
+BASE03="\[\e[38;2;146;131;116m\]" # 146-131-116
+BASE02="\[\e[38;2;40;40;40m\]" # 40- 40- 40
+BASE01="\[\e[38;2;170;176;30m\]" # 170-176- 30
+BASE00="[\e[38;2;250;189;47m\]" # 250-189- 47
+BASE0="\[\e[38;2;113;149;134m\]" # 113-149-134
+BASE1="\[\e[38;2;142;192;124m\]" # 142-192-124
+BASE2="\[\e[38;2;168;153;132m\]" #  168-153-132
+BASE3="\[\e[38;2;235;219;178m\]" # 235-219-178
+YELLOW="\[\e[38;2;215;153;33m\]" #  215-153- 33
+ORANGE="\[\e[38;2;247;48;40m\]" #  247- 48- 40
+RED="\[\e[38;2;190;15;23m\]" # 190- 15- 23
+MAGENTA="\[\e[38;2;177;98;134m\]" #  177- 98-134
+VIOLET="\[\e[38;2;211;134;155m\]" # 211-134-155
+BLUE="\[\e[38;2;69;133;136m\]" # 69-133-136
+CYAN="\[\e[38;2;104;157;106m\]" #  104-157-106
+GREEN="\[\e[38;2;134;135;21m\]" # 134-135- 21
+RESET="\[\e[0m\]" # just a 0 value resets

@@ -26,7 +26,7 @@ Pull requests are highly appreciated.
 ## Features
 
 - gruvbox theme (with true color and italics support!)
-- vim 8 config
+- vim *8* config
 - some okayish tmux config, I guess
 - root indicator
 - command timestamp and error code
@@ -69,8 +69,12 @@ Unzip and install the version for your OS.
 git clone --recursive https://github.com/enplotz/ienv ~/.ienv && ~/.ienv/install.sh
 ```
 
-### iTerm2 (macOS)
-You should also install "Gruvbox Dark" ([morhetz/gruvbox-contrib](https://github.com/morhetz/gruvbox-contrib/tree/master/iterm2)).
+### Colors (iTerm2 & macOS)
+
+One Half Light
+
+
+You should also install "Gruvbox Light" ([morhetz/gruvbox-contrib](https://github.com/morhetz/gruvbox-contrib/tree/master/iterm2)).
 
 Alternatively, you can also try "Solarized Dark Patched" color theme for your terminal ([mbadolato/iTerm2-Color-Schemes](https://github.com/mbadolato/iTerm2-Color-Schemes/#solarized-dark---patched)).
 

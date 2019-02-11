@@ -26,3 +26,6 @@ export LS_COLORS="no=$NORMAL:fi=$FILE:di=$DIR:ln=$LINK:or=$ORPHAN:mi=$MISSING:ex
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+
+# source $IENV/colors-default
+# source $IENV/colors-gruvbox-dark

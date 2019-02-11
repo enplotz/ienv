@@ -61,8 +61,13 @@ if proceed "❓setup vimrc?" ; then
     echo "[VIM] installing plugins ..."
     mkdir -p $HOME/.vim/pack/managed-by-ienv/start $HOME/.vim/pack/managed-by-ienv/opt
 
-    # load gruvbox theme automatically
-    ln -s ~/.ienv/vim/theme/gruvbox ~/.vim/pack/managed-by-ienv/start
+    # load color theme automatically
+    #ln -s ~/.ienv/vim/theme/gruvbox ~/.vim/pack/managed-by-ienv/start
+    ln -s ~/.ienv/vim/theme/onehalf ~/.vim/pack/managed-by-ienv/start
+    # fix python docstrings:
+    mkdir -p ~/.vim/pack/managed-by-ienv/start/after/syntax/ && ln -s ~/.ienv/vim/python.vim ~/.vim/pack/managed-by-ienv/start/after/syntax/python.vim
+
+
 
     ln -s ~/.ienv/vim/plugin/airline ~/.vim/pack/managed-by-ienv/start
     ln -s ~/.ienv/vim/plugin/fugitive ~/.vim/pack/managed-by-ienv/start
