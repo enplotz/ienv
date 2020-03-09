@@ -12,4 +12,6 @@ source $IENV/env
 source $IENV/bash-history
 source $IENV/aliases
 source $IENV/coloring
-source $IENV/prompt
+
+#source $IENV/prompt # we use starship.rs currently
+eval "$(starship init bash)"

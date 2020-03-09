@@ -21,7 +21,6 @@ export LSCOLORS='GxFxCxDxBxegedabagaced'
 # for Linux
 export LS_COLORS="no=$NORMAL:fi=$FILE:di=$DIR:ln=$LINK:or=$ORPHAN:mi=$MISSING:ex=$EXEC:su=$SETUID:sg=$SETUID:tw=$WRITABLE:ow=$WRITABLE"
 
-
 # aliases for common commands to enable color output
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'

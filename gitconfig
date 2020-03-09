@@ -1,7 +1,9 @@
 [push]
-	default = simple
+  default = simple
 [core]
-	excludesfile = ~/.ienv/gitignore_global
-	editor = /usr/bin/env vim
+  excludesfile = ~/.ienv/gitignore_global
+  editor = /usr/bin/env vim
 [color]
-	ui = auto
+  ui = auto
+[diff]
+  algorithm = patience

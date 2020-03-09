@@ -3,9 +3,6 @@
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# git
-# export GIT_EXEC_PATH=~/.bin/:$(git --exec-path)
-
 export EDITOR='vim';
 
 # Set the appropriate umask.
@@ -21,19 +18,11 @@ shopt -s autocd cdable_vars cdspell globstar
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-# fzf
-export FZF_COMPLETION_TRIGGER='ff'
-_fzf_compgen_path() {
-  ag -g "" "$1"
-}
-export FZF_DEFAULT_COMMAND='ag -g ""'
-export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
-
-  # if [ -d /usr/local/sbin ]; then
-  #   PATH=/usr/local/sbin:$PATH
-  # fi
+  # Homebrew 
+  if [ -d /usr/local/sbin ]; then
+    PATH=/usr/local/sbin:$PATH
+  fi
 
   # Support Rusts cargo build tool (via rustup)
   if [ -d ~/.cargo/bin ]; then
@@ -41,12 +30,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     source $HOME/.cargo/env
   fi
 
-  # # miniconda2 installation
-  # if [ -d ~/miniconda2 ]; then
-  #   PATH="~/miniconda2/bin:$PATH"
-  #   PATH="~/miniconda2/pkgs:$PATH"
-  # fi
+  # miniconda3 installation
+  #if [ -d ~/miniconda3 ]; then
+  #  PATH="~/miniconda3/bin:$PATH"
+  #  PATH="~/miniconda3/pkgs:$PATH"
+  #fi
 
+  # my own scripts
   if [ -d ~/.bin ]; then
     PATH=$PATH:~/.bin
   fi
@@ -59,6 +49,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     do
       PATH=$PATH:"${i}/bin"
     done
+  fi
+
+  if [ -d ~/.sdkman ]; then
+    export SDKMAN_DIR="$HOME/.sdkman"
+    [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
   fi
 
 fi
